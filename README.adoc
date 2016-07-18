@@ -40,12 +40,12 @@ Program disponuje slovníkem českých slov (cca 20000 slov). Z těchto slov si 
 
 Stav hotovosti nebo úvěru na kartě (na účtu příslušném ke kartě) se zjistí podle záznamu na čipu elektronické peněženky, kdy se platba odúčtuje ihned ze stavu hotovosti karty okamžitým dálkovým ověřením platební schopnosti (kreditu) u vydavatele karty (banky), kdy platbu vydavatel karty zaúčtuje příjemci prakticky okamžitě, ale plátci peníze odečte dodatečně. K identifikaci bude příjemce využívat heslo, které může kdykoliv změnit.
 
-* moje = hovor ahoj pes motel les stůl jetel ryba _(v textu se nevyskytuje -> koduje se zvláštní slovo; u dlouhého podkladového textu bude tento mod málo pravděpodobný)
-* heslo = život dům_(57.slovo v podkladovém textu)
-* ke = ruka (10.slovo v podkladovém textu)
-* kartě = text (6.slovo v podkladovém textu)
-* banky = symbol (38.slovo v podkladovém textu)
-* : (dvojtečka) = asciikod 58 => býk kabel 
+* moje = hovor ahoj pes motel les stůl jetel ryba _(v textu se nevyskytuje -> koduje se zvláštní slovo; u dlouhého podkladového textu bude tento mod málo pravděpodobný)_
+* heslo = život dům _(57.slovo v podkladovém textu)_
+* ke = ruka _(10.slovo v podkladovém textu)_
+* kartě = text _(6.slovo v podkladovém textu)_
+* banky = symbol _(38.slovo v podkladovém textu)_
+* : _(dvojtečka)_ = asciikod 58 => býk kabel 
 * banky: = tvoří jedno slovo => ryba dům symbol zeď býk kabel hovor
 * 9876 = 2x4938 => leknín pes hrnek kočka
 
