@@ -1,0 +1,67 @@
+= Maskovaná šifra
+
+Cílem je vytvořit program, který zašifruje libovolnou zprávu do poměrně delšího podkladového souboru, který bude splňovat následující:
+
+* český text, minimálně dělení do slov
+* kodování UTF
+* čistý text (žádné formátovací značky)
+
+Program vyhledá v textu slova, která se shodují se šifrovanou zprávou a na základě předem vybraného klíče do textu rozmístí vlastní česká slova, která budou klíčem k vyhledání těchto shod. Slova šifrované zprávy, která nebudou v podkladovém textu k dispozici zašifruje vlastním způsobem tak, aby ve výsledném českém textu tento kod nepůsobil rušivě jen na čtenáře, nikoliv na strojové prohledávání. K rozkodování dané zprávy bude potřeba:
+
+* podkladový text (předpokládá se minimálně 5000 slov)
+* číselný klíč (předpoklad k vyhledání vložených značek)
+* tento program v konkrétní konfiguraci (různé konfigurace mohou mít své značky s rozdílným významem)
+
+== Popis značkovacího systému
+
+Program disponuje slovníkem českých slov (cca 20000 slov). Z těchto slov si na požádání vytvoří vlastní značkovací systém, který obecně bude splňovat následující:
+
+* každé z čísel 1-5000 bude mít svůj ekvivalent v několika českých slovech.
+* několik českých slov bude vybráno pro matematické operace součet, součin a desetinnou čárku
+* pomocí předchozích dvou bodů půjde do několika slov zakodovat číslo, které bude představovat pořadí hledaného slova od počátku textu, které bude ukončeno slovem ze zvláštní skupiny _(skupina1)_. V případě využití tohoto bodu v následujícím, bude nutné tento číselný údaj slovem ze _skupiny1_ také uvozovat
+* v případě, že se šifrované slovo v textu nebude vyskytovat, bude na tuto skutečnost upozorňovat další slovo ze zvláštní skupiny _(skupina2)_, za kterým budou následovat dvě číslovky (viz.první bod), které budou představovat pořadí prvního a posledního znaku z následujícího slova. Tato trojice se bude opakovat dokud nedojde k sestavení celého slova a tuto posloupnost trojic ukončí opět jedno slovo ze skupiny, která tento systém uvedla_(skupina2)_.
+* pokud bude v šifrované zprávě číselný údaj, upozorní na to opět zvláštní skupina slov _(skupina3)_, za kterou bude následovat kodovaný matematický výraz (může a nemusí být součástí předchozího bodu o trojicích)
+* v případě šifrování zvláštního znaku (pomlčky, číslice, podtržítka), opět na tuto skutečnost upozorní slovo ze zvláštní skupiny _(skupina4)_, za kterým bude následovat kodované číslo, představující ascii kod daného znaku. (může a nemusí být součástí bodu o trojicích)
+
+=== Příklady
+
+*Konfigurace programu bude například:*
+
+* ahoj,les _(1)_; pes, stůl _(2)_; Ivan, počítač _(3)_... věž,text _(6)_... šifra, ruka _(10)_...symbol _(38)_... zivot,_ mozek _(57)_, kabel _(58)_... kočka _(4938)_
+* topení, slovo _(součet)_; hrnek, písmeno _(součin)_; meč, klávesa _(desetinná čárka)
+* zed, dům _(skupina1)_
+* hovor, ryba -> uvozuje a ukončuje bod o trojicích _(skupina2)_
+* leknín, postel -> uvozuje číselný údaj _(skupina3)_
+* býk, erb -> uvozuje zvláštní znak _(skupina4)_
+
+*Šifrovaná zpráva bude:* „moje heslo ke kartě banky: 9876“
+
+*Podkladový text:* _(předpokládá se samozřejmě mnohem delší)_
+
+Stav hotovosti nebo úvěru na kartě (na účtu příslušném ke kartě) se zjistí podle záznamu na čipu elektronické peněženky, kdy se platba odúčtuje ihned ze stavu hotovosti karty okamžitým dálkovým ověřením platební schopnosti (kreditu) u vydavatele karty (banky), kdy platbu vydavatel karty zaúčtuje příjemci prakticky okamžitě, ale plátci peníze odečte dodatečně. K identifikaci bude příjemce využívat heslo, které může kdykoliv změnit.
+
+* moje = hovor ahoj pes motel les stůl jetel ryba _(v textu se nevyskytuje -> koduje se zvláštní slovo; u dlouhého podkladového textu bude tento mod málo pravděpodobný)
+* heslo = život dům_(57.slovo v podkladovém textu)
+* ke = ruka (10.slovo v podkladovém textu)
+* kartě = text (6.slovo v podkladovém textu)
+* banky = symbol (38.slovo v podkladovém textu)
+* : (dvojtečka) = asciikod 58 => býk kabel 
+* banky: = tvoří jedno slovo => ryba dům symbol zeď býk kabel hovor
+* 9876 = 2x4938 => leknín pes hrnek kočka
+
+O tyto uvedené entity bude podkladový text rozšířen pomocí klíče. Například - pokud bude klíč 538, tak slovo od počátku podkladového textu na pozici 538 bude posunuto a před něj bude vložena první entita:
+
+__hovor ahoj pes motel les stůl jetel ryba__
+
+odpočítá se opět 538 slov a na další pozici přijde následující entita:
+
+__život dům__
+
+atd...
+
+Při dlouhém podkladovém textu a rozumně zvoleném klíči by narušení textu měl odhalit pouze lidský čtenář, který by ovšem pro rozkodování musel nejen znát konfiguraci programu, ale navíc by musel vědět, že se vůbec o nějakou šifru jedná...
+
+
+== Stav projektu
+
+Zatím jen ujasněné zadání a první eksperimenty se slovníkem českých slov. Na rozdíl od projektu *„Vortaro“*, tentokrát využiji standardní kontejnery C++...
