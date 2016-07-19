@@ -1,8 +1,13 @@
 # depslib dependency file v1.0
-1468789255 source:/home/ghibulo/Dropbox/programovani/ansiC++/MaskovanaSifra/main.cpp
+1468935906 source:/home/ghibulo/Dropbox/programovani/ansiC++/MaskovanaSifra/main.cpp
 	<iostream>
 	<string>
+	<string.h>
 	<fstream>
 	<map>
+	<set>
+	<stdio.h>
 	<vector>
+	<sys/stat.h>
+	<climits>
 
