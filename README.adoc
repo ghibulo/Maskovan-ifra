@@ -19,7 +19,7 @@ Program disponuje slovníkem českých slov (cca 20000 slov). Z těchto slov si 
 * každé z čísel 1-5000 bude mít svůj ekvivalent v několika českých slovech.
 * několik českých slov bude vybráno pro matematické operace součet, součin a desetinnou čárku
 * pomocí předchozích dvou bodů půjde do několika slov zakodovat číslo, které bude představovat pořadí hledaného slova od počátku textu, které bude ukončeno slovem ze zvláštní skupiny _(skupina1)_. V případě využití tohoto bodu v následujícím, bude nutné tento číselný údaj slovem ze _skupiny1_ také uvozovat
-* v případě, že se šifrované slovo v textu nebude vyskytovat, bude na tuto skutečnost upozorňovat další slovo ze zvláštní skupiny _(skupina2)_, za kterým budou následovat dvě číslovky (viz.první bod), které budou představovat pořadí prvního a posledního znaku z následujícího slova. Tato trojice se bude opakovat dokud nedojde k sestavení celého slova a tuto posloupnost trojic ukončí opět jedno slovo ze skupiny, která tento systém uvedla_(skupina2)_.
+* v případě, že se šifrované slovo v textu nebude vyskytovat, bude na tuto skutečnost upozorňovat další slovo ze zvláštní skupiny _(skupina2)_, za kterým budou následovat dvě číslovky (viz.první bod), které budou představovat pořadí prvního a posledního znaku z následujícího slova. Tato trojice se bude opakovat dokud nedojde k sestavení celého slova a tuto posloupnost trojic ukončí opět jedno slovo ze skupiny, která tento systém uvedla _(skupina2)_ .
 * pokud bude v šifrované zprávě číselný údaj, upozorní na to opět zvláštní skupina slov _(skupina3)_, za kterou bude následovat kodovaný matematický výraz (může a nemusí být součástí předchozího bodu o trojicích)
 * v případě šifrování zvláštního znaku (pomlčky, číslice, podtržítka), opět na tuto skutečnost upozorní slovo ze zvláštní skupiny _(skupina4)_, za kterým bude následovat kodované číslo, představující ascii kod daného znaku. (může a nemusí být součástí bodu o trojicích)
 
@@ -27,7 +27,7 @@ Program disponuje slovníkem českých slov (cca 20000 slov). Z těchto slov si 
 
 *Konfigurace programu bude například:*
 
-* ahoj,les _(1)_; pes, stůl _(2)_; Ivan, počítač _(3)_... věž,text _(6)_... šifra, ruka _(10)_...symbol _(38)_... zivot,_ mozek _(57)_, kabel _(58)_... kočka _(4938)_
+* ahoj,les _(1)_; pes, stůl _(2)_; Ivan, počítač _(3)_... věž,text _(6)_... šifra, ruka _(10)_...symbol _(38)_... zivot, mozek _(57)_, kabel _(58)_... kočka _(4938)_
 * topení, slovo _(součet)_; hrnek, písmeno _(součin)_; meč, klávesa _(desetinná čárka)
 * zed, dům _(skupina1)_
 * hovor, ryba -> uvozuje a ukončuje bod o trojicích _(skupina2)_
@@ -64,4 +64,8 @@ Při dlouhém podkladovém textu a rozumně zvoleném klíči by narušení text
 
 == Stav projektu
 
+17.7.2016::
 Zatím jen ujasněné zadání a první eksperimenty se slovníkem českých slov. Na rozdíl od projektu *„Vortaro“*, tentokrát využiji standardní kontejnery C++...
+
+19.7.2016::
+Ze seznamu slov vytvoří skupiny potřebné ke kodování zprávy. Bez tohoto rozdělení nepůjde dekodovat zprávy, které pomocí nich byly kodovány -> toto rozdělení (konfiguraci) ukládám do conf.txt.
